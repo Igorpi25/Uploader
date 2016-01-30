@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.ivanov.tech.connection.Connection.ProtocolListener;
 import com.ivanov.tech.session.Session;
-import com.ivanov.tech.session.Session.Status;
 import com.ivanov.tech.uploader.R;
 
 /**
@@ -44,11 +44,16 @@ public class MainActivity extends SherlockFragmentActivity {
     }
 
     public void showTester(){
-    	Session.checkApiKey(getApplicationContext(), getSupportFragmentManager(), R.id.main_container, new Status(){
+    	Session.checkApiKey(this, getSupportFragmentManager(), R.id.main_container, new ProtocolListener(){
+			
+			@Override
+			public void isCompleted() {
+				changeFragment(0);	
+			}
 
 			@Override
-			public void isSuccess() {
-				changeFragment(0);				
+			public void onCanceled() {
+				finish();
 			}
         });
     }

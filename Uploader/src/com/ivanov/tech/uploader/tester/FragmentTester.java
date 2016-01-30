@@ -62,8 +62,8 @@ public class FragmentTester extends SherlockDialogFragment implements OnClickLis
     	
     public static final int[]  SIZE= {600,600};
     public static final String FILE_PART_NAME = "image";
-    public static final String URL_GET_AVATAR_0="http://121.127.248.83/v1/avatars/0";
-    public static final String URL_POST_AVATAR_UPLOAD="http://121.127.248.83/v1/avatars/upload";
+    public static final String URL_GET_AVATAR_0="http://94.245.159.1/igorserver/v1/avatars/0";
+    public static final String URL_POST_AVATAR_UPLOAD="http://94.245.159.1/igorserver/v1/avatars/upload";
 
     Button button_upload;
     
@@ -111,7 +111,7 @@ public class FragmentTester extends SherlockDialogFragment implements OnClickLis
 
 				@Override
 				public void onUploaded() {
-					loadImage(URL_GET_AVATAR_0);
+					getImageUrl();
 				}
 
 				@Override
@@ -251,8 +251,11 @@ public class FragmentTester extends SherlockDialogFragment implements OnClickLis
     
     void loadImage(String url){
     	Log.d(TAG,"loadImage url="+url);
-    	
-    	 Glide.with(this).load(url).placeholder(R.drawable.image_missing).error(R.drawable.loading_error).into(imageview);         
+    	try{
+    	 Glide.with(this).load(url).placeholder(R.drawable.image_missing).error(R.drawable.loading_error).into(imageview);
+    	}catch(Exception e){
+    		Log.e(TAG,"loadImage Exception e="+e);
+    	}
     }
     
 }

@@ -30,8 +30,6 @@ import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.ivanov.tech.session.Session;
-import com.ivanov.tech.session.SessionFragmentLogin;
-import com.ivanov.tech.session.Session.Status;
 import com.ivanov.tech.uploader.ui.FragmentChooser;
 import com.ivanov.tech.uploader.ui.FragmentPreview;
 
