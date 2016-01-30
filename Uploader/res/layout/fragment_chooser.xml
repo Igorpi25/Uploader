@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_chooser_layout_dimming"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_overlay_black"
+    android:clickable="true" >
+    
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:background="@color/color_white"
+	    android:gravity="center"
+	    android:orientation="vertical"
+	    android:padding="@dimen/window_pading" >
+	
+	    <TextView
+	        android:id="@+id/fragment_chooser_textview_message"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="@dimen/window_pading"
+	        android:text="@string/fragment_chooser_textview_message" />
+	
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:gravity="center" >
+	
+	        <Button
+	            android:id="@+id/fragment_chooser_button_gallery"
+	            style="@style/style_button_dialog"
+	            android:layout_width="@dimen/widget_width_small"
+	            android:layout_height="@dimen/widget_width_small"
+	            android:text="@string/fragment_chooser_button_gallery_text" />
+	
+	        <Button
+	            android:id="@+id/fragment_chooser_button_camera"
+	            style="@style/style_button_dialog"
+	            android:layout_width="@dimen/widget_width_small"
+	            android:layout_height="@dimen/widget_width_small"
+	            android:text="@string/fragment_chooser_button_camera_text" />
+	
+	    </LinearLayout>
+	
+	</LinearLayout>
+</RelativeLayout>

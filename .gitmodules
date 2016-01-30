@@ -1,0 +1,4 @@
+[submodule "Session"]
+	path = Session
+	url = https://github.com/Igorpi25/Session.git
+	branch = library

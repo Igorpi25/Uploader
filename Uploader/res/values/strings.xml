@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">Ivanov\'s Tech Uploader</string>
+    <string name="logo">com.ivanov.tech.uploader</string>
+    <string name="subs">(demo activity)</string>
+
+    <string name="fragment_tester_button_upload_text">Upload</string>
+
+    <string name="fragment_chooser_button_gallery_text">Gallery</string>
+    <string name="fragment_chooser_button_camera_text">Camera</string>
+    <string name="fragment_chooser_textview_message">Choose the source of photo from: </string>
+    <string name="fragment_preview_button_done_text">Done</string>
+    <string name="fragment_preview_button_back_text">Back</string>
+
+</resources>

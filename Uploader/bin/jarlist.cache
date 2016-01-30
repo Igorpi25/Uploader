@@ -1,0 +1,8 @@
+# cache for current jar dependency. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1454163707608 85763 d4aaa36e04ee71a83444f8367c97a46fda662d2c D:\Git\Eclipse\Uploader\Session\Connection\Connection\libs\volley.jar
+1429768302155 85763 d4aaa36e04ee71a83444f8367c97a46fda662d2c D:\Git\Eclipse\Uploader\Uploader\libs\volley.jar
+1432174069411 995624 3e4e879d0b3dc11f2feb3f55e77e3b5bd82c4a28 D:\Git\Eclipse\Uploader\Uploader\libs\android-support-v4.jar
+1454162304404 995624 3e4e879d0b3dc11f2feb3f55e77e3b5bd82c4a28 D:\Git\Eclipse\Uploader\Session\Session\libs\android-support-v4.jar
+1454163707787 995624 3e4e879d0b3dc11f2feb3f55e77e3b5bd82c4a28 D:\Git\Eclipse\Uploader\Session\Connection\actionbarsherlock\libs\android-support-v4.jar
