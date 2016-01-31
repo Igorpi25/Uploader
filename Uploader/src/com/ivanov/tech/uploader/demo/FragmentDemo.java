@@ -47,8 +47,8 @@ public class FragmentDemo extends SherlockDialogFragment implements OnClickListe
     	
     public static final int[]  SIZE= {600,600};
     public static final String FILE_PART_NAME = "image";
-    public static final String URL_GET_USERS_0="http://94.245.159.1/igorserver/v1/users/0";
-    public static final String URL_POST_AVATAR_UPLOAD="http://94.245.159.1/igorserver/v1/avatars/upload";
+    public static final String URL_GET_USERS_0="http://"+Your Server Domen+"/v1/users/0";
+    public static final String URL_POST_AVATAR_UPLOAD="http://"+Your Server Domen+"/v1/avatars/upload";
 
     Button button_upload;    
     ImageView imageview_avatar,imageview_icon;    
