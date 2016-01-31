@@ -17,6 +17,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.Volley;
 import com.ivanov.tech.session.Session;
 import com.ivanov.tech.uploader.ui.FragmentChooser;
+import com.ivanov.tech.uploader.ui.FragmentPhoto;
 import com.ivanov.tech.uploader.ui.FragmentPreview;
 
 public class Uploader {
@@ -69,6 +70,29 @@ public class Uploader {
         }
     }
     
+	public static FragmentPhoto showFragmentPhoto(final Context context,final FragmentManager fragmentManager, final int container,final String filepath){
+
+        try{
+            if(fragmentManager.findFragmentByTag("FragmentPhoto").isVisible()){
+                return (FragmentPhoto)fragmentManager.findFragmentByTag("FragmentPhoto");
+            }else{
+                throw (new NullPointerException());
+            }
+            
+        }catch(NullPointerException e) {
+
+        	FragmentPhoto fragmentphoto = FragmentPhoto.newInstance(filepath);
+
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(container, fragmentphoto, "FragmentPhoto");
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            fragmentTransaction.addToBackStack("FragmentPhoto");
+            fragmentTransaction.commit();
+            
+            return fragmentphoto;
+        }
+    }
+	
 	public static void protocolChooseAndUpload(final Context context, final FragmentManager fragmentmanager, final PhotoMultipartRequest.Params params, final UploadListener status){
     	
     	Uploader.showFragmentChooser(context, fragmentmanager, R.id.main_container, new Uploader.ChooseListener(){

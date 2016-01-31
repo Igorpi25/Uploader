@@ -3,8 +3,8 @@
     android:id="@+id/fragment_preview_layout_dimming"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_overlay_black"
-    android:clickable="true" >
+    android:background="@color/color_gray_light"
+    android:padding="10dp" >
 
 	<LinearLayout
 	    android:layout_width="match_parent"
@@ -17,9 +17,11 @@
 	
 	    <ImageView
 	        android:id="@+id/fragment_preview_imageview_photo"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:layout_width="200dp"
+	        android:layout_height="200dp"
+	        android:clickable="true"
 	        android:contentDescription="Image Missing"
+	        android:padding="3dp"
 	        android:src="@drawable/image_missing" />
 	
 	    <Button

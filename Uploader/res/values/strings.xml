@@ -4,7 +4,7 @@
     <string name="logo">com.ivanov.tech.uploader</string>
     <string name="subs">(demo activity)</string>
 
-    <string name="fragment_tester_button_upload_text">Upload</string>
+    <string name="fragment_tester_button_upload_text">Upload new profile photo</string>
 
     <string name="fragment_chooser_button_gallery_text">Gallery</string>
     <string name="fragment_chooser_button_camera_text">Camera</string>

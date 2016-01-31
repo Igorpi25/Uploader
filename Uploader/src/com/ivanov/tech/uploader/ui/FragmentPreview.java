@@ -99,7 +99,7 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
             }
         });
         
-        
+        imageview.setOnClickListener(this);
         
         return view;
     }
@@ -141,11 +141,15 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
 			});
 			
 		}else if(v.getId()==button_back.getId()){
+			
 			close();
+			
+		}else if(v.getId()==imageview.getId()){
+			
+			Uploader.showFragmentPhoto(getActivity(), getFragmentManager(), R.id.main_container, filepath);
+			
 		}
 	}
-    
-    
     
     void close(){
     	getFragmentManager().popBackStack();
