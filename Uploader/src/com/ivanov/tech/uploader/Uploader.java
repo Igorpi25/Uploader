@@ -1,18 +1,10 @@
 package com.ivanov.tech.uploader;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -20,14 +12,8 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.Request.Method;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.ivanov.tech.session.Session;
 import com.ivanov.tech.uploader.ui.FragmentChooser;
@@ -37,11 +23,30 @@ public class Uploader {
 	
 	private static final String TAG = "Uploader";
 	
-	public static void showDialog(final Context context, final FragmentManager fragmentManager, final int container,final PhotoMultipartRequest.Params params, final Status status){
-		createPreviewFragment(context,fragmentManager,container,params,status);
-	}
+	public static FragmentChooser showFragmentChooser(final Context context,final FragmentManager fragmentManager, final int container,final ChooseListener statusListener){
+
+        try{
+            if(fragmentManager.findFragmentByTag("FragmentChooser").isVisible()){
+                return (FragmentChooser)fragmentManager.findFragmentByTag("FragmentChooser");
+            }else{
+                throw (new NullPointerException());
+            }
+            
+        }catch(NullPointerException e) {
+
+        	FragmentChooser fragmentchooser = FragmentChooser.newInstance(statusListener);
+
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(container, fragmentchooser, "FragmentChooser");
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            fragmentTransaction.addToBackStack("FragmentChooser");
+            fragmentTransaction.commit();
+            
+            return fragmentchooser;
+        }
+    }
 	
-	public static FragmentPreview createPreviewFragment(final Context context,final FragmentManager fragmentManager, final int container,final PhotoMultipartRequest.Params params, final Status status){
+	public static FragmentPreview showFragmentPreview(final Context context,final FragmentManager fragmentManager, final int container,final String filepath,final PhotoMultipartRequest.Params params, final UploadListener status){
 
         try{
             if(fragmentManager.findFragmentByTag("FragmentPreview").isVisible()){
@@ -52,7 +57,7 @@ public class Uploader {
             
         }catch(NullPointerException e) {
 
-        	FragmentPreview fragmentchooser = FragmentPreview.newInstance(params,status);
+        	FragmentPreview fragmentchooser = FragmentPreview.newInstance(filepath,params,status);
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(container, fragmentchooser, "FragmentPreview");
@@ -64,12 +69,48 @@ public class Uploader {
         }
     }
     
-    public static void doRequest(Context context,final PhotoMultipartRequest.Params params, final Status status, final ErrorListener errorlistener) {
+	public static void protocolChooseAndUpload(final Context context, final FragmentManager fragmentmanager, final PhotoMultipartRequest.Params params, final UploadListener status){
+    	
+    	Uploader.showFragmentChooser(context, fragmentmanager, R.id.main_container, new Uploader.ChooseListener(){
+
+			@Override
+			public void onChoosed(final String imagePath) {
+				Log.e(TAG, "Choose onChoosed imagePath = "+imagePath);
+							
+				Uploader.showFragmentPreview(context, fragmentmanager, R.id.main_container,imagePath,params, new UploadListener(){
+			    		
+							@Override
+							public void onUploaded() {
+								Log.e(TAG, "Upload onUploaded");
+								Toast.makeText(context,"Upload onUploaded", Toast.LENGTH_SHORT);
+								status.onUploaded();
+							}
+				
+							@Override
+							public void onCancelled() {
+								Log.e(TAG, "Upload onCancelled");
+								Toast.makeText(context,"Upload onCancelled", Toast.LENGTH_SHORT);
+								status.onCancelled();
+							}
+			    		
+			    		});
+			
+			}
+
+			@Override
+			public void onCancelled() {
+				Log.e(TAG, "Choose onCancelled");
+			}
+    		
+    	});
+    }
+	
+    public static void doRequestUpload(Context context, final String filePath, final PhotoMultipartRequest.Params params, final UploadListener status, final ErrorListener errorlistener) {
     	
     	final String tag=TAG+" doUploadRequest ";
     	
     	
-    	PhotoMultipartRequest request=new PhotoMultipartRequest(
+    	PhotoMultipartRequest request=new PhotoMultipartRequest(filePath,
     			params,
     			new Listener<String>(){
 
@@ -105,8 +146,14 @@ public class Uploader {
 
     }
     
-    public interface Status{    	
+    public interface UploadListener{
     	public void onUploaded();
     	public void onCancelled();    	
     }
+    
+    public interface ChooseListener{    	
+    	public void onChoosed(String imagePath);
+    	public void onCancelled(); 
+    }
+
 }

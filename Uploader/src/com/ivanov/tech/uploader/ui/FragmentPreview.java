@@ -1,51 +1,26 @@
 package com.ivanov.tech.uploader.ui;
 
 
-import java.io.File;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.android.volley.Request.Method;
-import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.ivanov.tech.session.Session;
 import com.ivanov.tech.uploader.PhotoMultipartRequest;
 import com.ivanov.tech.uploader.PhotoMultipartRequest.Params;
 import com.ivanov.tech.uploader.Uploader;
 import com.ivanov.tech.uploader.R;
-import com.ivanov.tech.uploader.Uploader.Status;
+import com.ivanov.tech.uploader.Uploader.UploadListener;
 
 
 
@@ -58,8 +33,9 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
     public static final String TAG = FragmentPreview.class
             .getSimpleName();    
     	
-    Uploader.Status status;
+    Uploader.UploadListener status;
     PhotoMultipartRequest.Params params;
+    String filepath;
     
     Button button_done,button_back;    
     ImageView imageview;
@@ -67,10 +43,11 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
     View layout_dimming;
         
     
-    public static FragmentPreview newInstance(Params params,Uploader.Status status) {
+    public static FragmentPreview newInstance(String filePath, Params params,Uploader.UploadListener status) {
     	FragmentPreview f = new FragmentPreview();
     	f.params=params;
     	f.status=status;
+    	f.filepath=filePath;
     	
         return f;
     }
@@ -107,7 +84,7 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
         // images
         options.inSampleSize = 8;
 
-        final Bitmap bitmap = PhotoMultipartRequest.getBitmap(params);
+        final Bitmap bitmap = PhotoMultipartRequest.getBitmap(filepath,params);
 
         imageview.setImageBitmap(bitmap);
         
@@ -135,7 +112,7 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
 	    	pDialog.show();
 	    	pDialog.setCancelable(false);
 	    	
-			Uploader.doRequest(getActivity(), params,new Status(){
+			Uploader.doRequestUpload(getActivity(), filepath,params,new UploadListener(){
 
 				@Override
 				public void onUploaded() {
@@ -162,6 +139,7 @@ public class FragmentPreview extends SherlockDialogFragment implements OnClickLi
 				}
 				
 			});
+			
 		}else if(v.getId()==button_back.getId()){
 			close();
 		}

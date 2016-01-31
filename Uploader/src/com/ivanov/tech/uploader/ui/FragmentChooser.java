@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
-import com.ivanov.tech.uploader.Chooser;
 import com.ivanov.tech.uploader.R;
 import com.ivanov.tech.uploader.Uploader;
 
@@ -26,30 +24,18 @@ public class FragmentChooser extends SherlockDialogFragment implements OnClickLi
     //Constants of onResultActivity
     private static final int SELECT_FILE = 1;
     
-    Chooser.Status status;
+    Uploader.ChooseListener status;
     
     Button button_gallery,button_camera;
     View layout_dimming;
     
-    public static FragmentChooser newInstance(Chooser.Status status) {
+    public static FragmentChooser newInstance(Uploader.ChooseListener status) {
     	FragmentChooser f = new FragmentChooser();
     	f.status=status;
     	
         return f;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        
-        
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = null;

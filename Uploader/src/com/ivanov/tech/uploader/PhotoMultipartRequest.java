@@ -41,8 +41,9 @@ public class PhotoMultipartRequest extends StringRequest {
     private final Response.Listener<String> mListener;
     protected Map<String, String> headers;
     protected Params mParams;
+    protected String mFilePath;
     
-    public PhotoMultipartRequest(Params params,                                 
+    public PhotoMultipartRequest(String filePath, Params params,                                 
                                  Listener<String> listener,
                                  ErrorListener errorListener
                                  ) 
@@ -50,6 +51,7 @@ public class PhotoMultipartRequest extends StringRequest {
         super(Request.Method.POST,params.getUrl(),listener,errorListener);
 
         mListener = listener;
+        mFilePath=filePath;
         mParams=params;
         
         buildMultipartEntity();
@@ -94,19 +96,19 @@ public class PhotoMultipartRequest extends StringRequest {
     
     protected void buildMultipartEntity()
     {
-    	Log.e("PhotoMultipartRequest", "buildMultipartEntity mImageFile.getName()="+mParams.getFilePath());
+    	Log.e("PhotoMultipartRequest", "buildMultipartEntity mImageFile.getName()="+mFilePath);
         
-    	mBuilder.addBinaryBody(mParams.getPartName(), getInputStream(mParams), ContentType.create("image"), mParams.getFilePath());
+    	mBuilder.addBinaryBody(mParams.getPartName(), getInputStream(mFilePath, mParams), ContentType.create("image"), mFilePath);
         mBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
         mBuilder.setLaxMode().setBoundary("xx").setCharset(Charset.forName("UTF-8"));
         
     }
     
-    public static final Bitmap getBitmap(Params params){
+    public static final Bitmap getBitmap(String filePath, Params params){
     	BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds=true;
         
-        BitmapFactory.decodeFile(params.getFilePath(), options);
+        BitmapFactory.decodeFile(filePath, options);
         float srcMinSize=options.outWidth<options.outHeight?options.outWidth:options.outHeight;
         float dstMaxSize=params.getSize()[0]>params.getSize()[1]?params.getSize()[0]:params.getSize()[1];
         
@@ -117,7 +119,7 @@ public class PhotoMultipartRequest extends StringRequest {
         }
         options.inJustDecodeBounds=false;
         
-        Bitmap srcBmp = BitmapFactory.decodeFile(params.getFilePath(), options);
+        Bitmap srcBmp = BitmapFactory.decodeFile(filePath, options);
         
         Bitmap dstBmp=null;
         float ratio;
@@ -160,11 +162,11 @@ public class PhotoMultipartRequest extends StringRequest {
         return dstBmp;
     }
     
-    public static final InputStream getInputStream(Params params){
+    public static final InputStream getInputStream(String filePath, Params params){
     	
         
         ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
-        getBitmap(params).compress(CompressFormat.PNG, 0, bos); 
+        getBitmap(filePath, params).compress(CompressFormat.PNG, 0, bos); 
         byte[] data = bos.toByteArray();
         
         final ByteArrayInputStream bs = new ByteArrayInputStream(data);
@@ -175,7 +177,6 @@ public class PhotoMultipartRequest extends StringRequest {
     public interface Params{
     	public String getPartName();
     	public int[] getSize();
-    	public String getFilePath();    	
     	public String getUrl();    	
     }
     
