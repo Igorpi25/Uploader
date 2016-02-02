@@ -78,6 +78,27 @@ Uploader.protocolChooseAndUpload( getActivity(), getFragmentManager(), mParams,	
 
 <img src="screenshot_FragmentPreview.png" width="200">
 
-Если нажать на кнопку "Done" фотография отправится на сервер. По завершению будет вызван метод `onUploaded` переданного объекта `UploadListener`. Если нажать "Cancel", протокол будет прерван и вызовется метод `onCanceled` переданного `UploadListener` объекта.
+Если нажать на кнопку "Done" фотография отправится на сервер. По завершению будет вызван метод `onUploaded` переданного объекта `UploadListener`. Если нажать "Back", протокол будет прерван и вызовется метод `onCanceled` переданного `UploadListener` объекта.
+
+Используемые библиотеки
+-----------------------
+
+* [ActionBarSherlock][1]
+* [Volley][2]
+* [Glid][9] - используется в демо проекте
+* [httpclientandroidlib][10] - для отправки изображения на сервер через Multipart HTTP POST Request
+* [Connection][3]- библиотека автора. Диалоги ошибки соединения к интернету. Включен в составе Session
+* [Session][8] - библиотека автора. Авторизация пользователя на сервере
 
 
+[1]: http://actionbarsherlock.com/
+[2]: https://github.com/mcxiaoke/android-volley
+[3]: https://github.com/Igorpi25/Connection
+[4]: https://github.com/Igorpi25/Server
+[5]: https://git-scm.com/book/en/v2/Git-Tools-Submodules/
+[6]: https://github.com/Igorpi25/Profile
+[7]: http://www.androidhive.info/2014/01/how-to-create-rest-api-for-android-app-using-php-slim-and-mysql-day-12-2/
+
+[8]: https://github.com/Igorpi25/Session
+[9]: https://github.com/bumptech/glide
+[10]:https://code.google.com/archive/p/httpclientandroidlib/
