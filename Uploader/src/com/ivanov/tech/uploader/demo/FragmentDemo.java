@@ -85,6 +85,7 @@ public class FragmentDemo extends SherlockDialogFragment implements OnClickListe
     @Override
 	public void onClick(View v) {
 		if(v.getId()==button_upload.getId()){
+			//Запуск протокола выбора и отправки фотографии на сервер
 			Uploader.protocolChooseAndUpload( getActivity(), getFragmentManager(),
 					new Params()	{
 	    				
@@ -190,7 +191,6 @@ public class FragmentDemo extends SherlockDialogFragment implements OnClickListe
                 
                 return headers;
             }
-    		
     		
     	};
     	 

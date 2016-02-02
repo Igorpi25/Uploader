@@ -18,6 +18,7 @@ public class ActivityDemo extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Инициализация Session
         Session.Initialize(getApplicationContext());
         
         setContentView(R.layout.activity_main);
