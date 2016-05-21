@@ -14,12 +14,17 @@ import com.ivanov.tech.uploader.R;
  */
 public class ActivityDemo extends SherlockFragmentActivity {
 
+	//Urls for Session
+	static final String url_testapikey="http://igorpi25.ru/v1/testapikey";
+	static final String url_login="http://igorpi25.ru/v1/login";
+	static final String url_register="http://igorpi25.ru/v1/register";
+		
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Инициализация Session
-        Session.Initialize(getApplicationContext());
+        //Init Session
+        Session.Initialize(getApplicationContext(),url_testapikey,url_login,url_register);
         
         setContentView(R.layout.activity_main);
         
