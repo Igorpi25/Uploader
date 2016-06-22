@@ -88,7 +88,7 @@ Uploader.protocolChooseAndUpload( getActivity(), getFragmentManager(), mParams,	
 Используемые библиотеки
 -----------------------
 
-* [ActionBarSherlock][1]
+* AppCompat ([ActionBarSherlock][1] в релизе [v1.0][11])
 * [Volley][2]
 * [Glid][9] - используется в демо-проекте
 * [httpclientandroidlib][10] - для отправки изображения на сервер через Multipart HTTP POST Request
@@ -154,3 +154,5 @@ $ git submodule update --remote --recursive --init
 [8]: https://github.com/Igorpi25/Session
 [9]: https://github.com/bumptech/glide
 [10]:https://code.google.com/archive/p/httpclientandroidlib/
+
+[11]: https://github.com/Igorpi25/Uploader/releases/tag/v1.0
