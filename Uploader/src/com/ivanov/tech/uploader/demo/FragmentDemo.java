@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -21,7 +22,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.android.volley.Request.Method;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -40,7 +40,7 @@ import com.ivanov.tech.uploader.R;
  * Created by Igor on 09.05.15.
  */
 
-public class FragmentDemo extends SherlockDialogFragment implements OnClickListener{
+public class FragmentDemo extends DialogFragment implements OnClickListener{
 
     public static final String TAG = FragmentDemo.class
             .getSimpleName();    

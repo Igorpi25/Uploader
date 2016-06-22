@@ -2,16 +2,16 @@ package com.ivanov.tech.uploader.ui;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.ivanov.tech.uploader.R;
 
-public class FragmentPhoto extends SherlockDialogFragment {
+public class FragmentPhoto extends DialogFragment {
 	
     private static final String TAG="FragmentDemoPhoto";
      

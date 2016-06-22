@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.ivanov.tech.uploader.PhotoMultipartRequest;
@@ -28,7 +28,7 @@ import com.ivanov.tech.uploader.Uploader.UploadListener;
  * Created by Igor on 09.05.15.
  */
 
-public class FragmentPreview extends SherlockDialogFragment implements OnClickListener{
+public class FragmentPreview extends DialogFragment implements OnClickListener{
 
     public static final String TAG = FragmentPreview.class
             .getSimpleName();    

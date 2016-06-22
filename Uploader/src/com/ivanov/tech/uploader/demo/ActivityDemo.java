@@ -3,8 +3,8 @@ package com.ivanov.tech.uploader.demo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.ivanov.tech.connection.Connection.ProtocolListener;
 import com.ivanov.tech.session.Session;
 import com.ivanov.tech.uploader.R;
@@ -12,7 +12,7 @@ import com.ivanov.tech.uploader.R;
 /**
  * Created by Igor on 15.01.15.
  */
-public class ActivityDemo extends SherlockFragmentActivity {
+public class ActivityDemo extends AppCompatActivity {
 
 	//Urls for Session
 	static final String url_testapikey="http://igorpi25.ru/v1/testapikey";

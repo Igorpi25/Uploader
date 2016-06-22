@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,11 +13,10 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.ivanov.tech.uploader.R;
 import com.ivanov.tech.uploader.Uploader;
 
-public class FragmentChooser extends SherlockDialogFragment implements OnClickListener{
+public class FragmentChooser extends DialogFragment implements OnClickListener{
 
     public static final String TAG = FragmentChooser.class
             .getSimpleName();    
